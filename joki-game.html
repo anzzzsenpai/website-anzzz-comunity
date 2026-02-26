@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Joki Services | Price List -</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .feather {
+            position: fixed;
+            width: 20px;
+            height: 40px;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.9) 0%, rgba(200,220,255,0.6) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            opacity: 0.4;
+            animation: float 15s infinite ease-in-out;
+            pointer-events: none;
+            z-index: 0;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg) translateX(0); }
+            25% { transform: translateY(-20px) rotate(5deg) translateX(10px); }
+            50% { transform: translateY(-10px) rotate(-5deg) translateX(-5px); }
+            75% { transform: translateY(-30px) rotate(3deg) translateX(5px); }
+        }
+        
+        .price-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 24px;
+            padding: 2rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .price-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 25px 70px rgba(0,0,0,0.25);
+        }
+        
+        .price-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            border-bottom: 1px dashed rgba(100,100,100,0.2);
+        }
+        
+        .price-item:last-child {
+            border-bottom: none;
+        }
+        
+        .price-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.9rem;
+            position: relative;
+        }
+        
+        .price-badge::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 8px;
+            background: #ffd700;
+            color: #333;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 800;
+        }
+        
+        .price-badge.premium::before {
+            content: '';
+            background: #ff6b6b;
+            color: white;
+        }
+        
+        .category-tab {
+            background: rgba(255,255,255,0.2);
+            border: 2px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+        
+        .category-tab.active {
+            background: white;
+            color: #667eea;
+        }
+        
+        .game-section {
+            display: none;
+        }
+        
+        .game-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .back-btn {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: rgba(255,255,255,0.9);
+            padding: 0.75rem 1.5rem;
+            border-radius: 30px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            z-index: 100;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .back-btn:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.2);
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+    <!-- Floating Feathers -->
+    <div class="feather" style="top: 10%; left: 5%; animation-delay: 0s;"></div>
+    <div class="feather" style="top: 30%; right: 10%; animation-delay: 2s;"></div>
+    <div class="feather" style="top: 70%; left: 8%; animation-delay: 4s;"></div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">
+        <i data-lucide="arrow-left" class="w-5 h-5"></i>
+        Kembali
+    </a>
+
+    <div class="container mx-auto px-4 py-20 relative z-10">
+        <!-- Header -->
+        <div class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-white mb-4 drop-shadow-lg">Game Joki Services 🎮</h1>
+            <p class="text-white/90 text-lg">Lengkap, Cepat, Aman, dan Trusted!</p>
+            <div class="mt-4 inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-white/90 text-sm">
+                <span>Price Range:</span>
+                <span class="font-mono bg-yellow-400 text-black px-2 py-0.5 rounded text-xs font-bold"></span>
+                <span>~</span>
+                <span class="font-mono bg-red-500 text-white px-2 py-0.5 rounded text-xs font-bold"></span>
+            </div>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="flex justify-center gap-4 mb-10 flex-wrap">
+            <button onclick="showGame('genshin')" id="tab-genshin" class="category-tab active flex items-center gap-2">
+                <img src="https://huggingface.co/spaces/shina17/mahiru-shiina-personal-joki-web-snxmn/resolve/main/images/anzzz%20joki%20genshin.png" alt="Genshin" class="w-8 h-8 rounded-full object-cover">
+                Genshin Impact
+            </button>
+            <button onclick="showGame('wuwa')" id="tab-wuwa" class="category-tab flex items-center gap-2">
+                <img src="https://huggingface.co/spaces/shina17/mahiru-shiina-personal-joki-web-snxmn/resolve/main/images/anzzz%20joki%20wuwa.png" alt="WuWa" class="w-8 h-8 rounded-full object-cover">
+                Wuthering Waves
+            </button>
+        </div>
+
+        <!-- Genshin Impact Section -->
+        <div id="genshin-section" class="game-section active max-w-3xl mx-auto">
+            <div class="price-card mb-6">
+                <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-purple-100">
+                    <img src="https://huggingface.co/spaces/shina17/mahiru-shiina-personal-joki-web-snxmn/resolve/main/images/anzzz%20joki%20genshin.png" alt="Genshin" class="w-16 h-16 rounded-2xl object-cover shadow-lg">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Genshin Impact</h2>
+                        <p class="text-gray-500 text-sm">Daily, Spiral Abyss, Event, Exploration</p>
+                    </div>
+                </div>
+
+                <!-- Daily Commission -->
+                <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    Daily Commission
+                </h3>
+                <div class="space-y-2 mb-6 bg-purple-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Daily Commission (1 hari)</span>
+                        <span class="price-badge">5k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Weekly (7 hari)</span>
+                        <span class="price-badge">30k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Monthly (30 hari)</span>
+                        <span class="price-badge premium">100k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Monthly + Resin Boss</span>
+                        <span class="price-badge premium">150k</span>
+                    </div>
+                </div>
+
+                <!-- Spiral Abyss -->
+                <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="zap" class="w-5 h-5"></i>
+                    Spiral Abyss
+                </h3>
+                <div class="space-y-2 mb-6 bg-purple-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Floor 9-10 (All Clear)</span>
+                        <span class="price-badge">20k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Floor 11 (All Clear)</span>
+                        <span class="price-badge">35k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Floor 12 (All Clear)</span>
+                        <span class="price-badge premium">50k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Full Run Floor 9-12</span>
+                        <span class="price-badge premium">80k</span>
+                    </div>
+                </div>
+
+                <!-- Exploration & Quest -->
+                <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="map" class="w-5 h-5"></i>
+                    Exploration & Quest
+                </h3>
+                <div class="space-y-2 mb-6 bg-purple-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Story Quest (per act)</span>
+                        <span class="price-badge">15k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Archon Quest</span>
+                        <span class="price-badge">25k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">World Quest (kecil)</span>
+                        <span class="price-badge">10k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">World Quest (besar)</span>
+                        <span class="price-badge premium">40k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Region Exploration 100%</span>
+                        <span class="price-badge premium">150k-200k</span>
+                    </div>
+                </div>
+
+                <!-- Event -->
+                <h3 class="text-lg font-bold text-purple-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="gift" class="w-5 h-5"></i>
+                    Event
+                </h3>
+                <div class="space-y-2 bg-purple-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Event Mini (all clear)</span>
+                        <span class="price-badge">20k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Event Besar (all clear)</span>
+                        <span class="price-badge premium">60k</span>
+                    </div>
+                </div>
+
+                <!-- Order Button -->
+                <a href="https://wa.me/6281338838631?text=Halo%20min,%20mau%20joki%20Genshin%20dong!%0A%0AJenis:%20...%0ABudget:%20-" target="_blank" class="mt-6 w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] transition-all">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Order Joki Genshin
+                </a>
+            </div>
+        </div>
+
+        <!-- Wuthering Waves Section -->
+        <div id="wuwa-section" class="game-section max-w-4xl mx-auto">
+            <div class="price-card mb-6">
+                <div class="flex items-center gap-4 mb-6 pb-4 border-b-2 border-teal-100">
+                    <img src="https://huggingface.co/spaces/shina17/mahiru-shiina-personal-joki-web-snxmn/resolve/main/images/anzzz%20joki%20wuwa.png" alt="WuWa" class="w-16 h-16 rounded-2xl object-cover shadow-lg">
+                    <div>
+                        <h2 class="text-2xl font-bold text-gray-800">Wuthering Waves</h2>
+                        <p class="text-gray-500 text-sm">Daily, Tower, Boss, Farming, Exploration</p>
+                    </div>
+                </div>
+
+                <!-- Exploration Huanglong -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="map" class="w-5 h-5"></i>
+                    Joki Explore Huanglong 🗺️
+                </h3>
+                <div class="overflow-x-auto mb-6 bg-teal-50 rounded-xl p-4">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b-2 border-teal-200">
+                                <th class="text-left py-2 text-gray-700">Region</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">0-60%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">60-80%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">80-90%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">90-100%</th>
+                                <th class="text-center py-2 text-teal-700 font-bold">Full 100%</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Central Plains</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">200k</span></td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Desorock Highland</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Dim Forest</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Gorges of Spirits</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Jinzhou</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Mt. Firmament</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Norfall Barrens</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Port City of Guixu</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Tiger's Maw</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Whining Aix's Mire</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Wuming Bay</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Black Shores</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Tethys Deep</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">40k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Exploration Rinascita -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="compass" class="w-5 h-5"></i>
+                    Joki Explore Rinascita 🧭
+                </h3>
+                <div class="overflow-x-auto mb-6 bg-teal-50 rounded-xl p-4">
+                    <table class="w-full text-sm">
+                        <thead>
+                            <tr class="border-b-2 border-teal-200">
+                                <th class="text-left py-2 text-gray-700">Region</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">0-60%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">60-80%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">80-90%</th>
+                                <th class="text-center py-2 text-teal-600 font-bold">90-100%</th>
+                                <th class="text-center py-2 text-teal-700 font-bold">Full 100%</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-gray-700">
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Raguna City</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">5k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">230k</span></td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Whisperwind Haven</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Penitent's End</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Hallowed Reach</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Nimbus Sanctum</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Thessaleo Fells</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Fagaceae Peninsula</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Averardo Vault</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Avenoleum</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Riccioli Island</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Vault Underground</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Septimont</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">60k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr class="border-b border-teal-100">
+                                <td class="py-2">Fabricatorium of the Deep</td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2">Sangius Pleatus <span class="text-xs text-teal-500">(incl. main quest)</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">38k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">25k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span></td>
+                                <td class="text-center"><span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span></td>
+                                <td class="text-center">-</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- End Game Content -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="trophy" class="w-5 h-5"></i>
+                    End Game Content 🏆
+                </h3>
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Tower of Adversity (Full Star)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span>
+                    </div>
+                    <div class="border-t border-teal-200 my-2 pt-2">
+                        <p class="text-sm text-teal-600 font-semibold mb-2">Hologram Difficulty:</p>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-600 text-sm ml-4">Diff 1-3</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">3k / each</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-600 text-sm ml-4">Diff 4-5</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">5k / each</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-600 text-sm ml-4">Diff 6</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">10k</span>
+                    </div>
+                </div>
+
+                <!-- Daily -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="calendar-check" class="w-5 h-5"></i>
+                    Daily Packages 📅
+                </h3>
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">1 Hari Daily</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">3k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">1 Minggu (7 hari)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">1 Bulan (daily+event+bp)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">35k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">1 Patch (daily+event+bp)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">110k</span>
+                    </div>
+                </div>
+
+                <!-- Quest -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="scroll-text" class="w-5 h-5"></i>
+                    Quest 📜
+                </h3>
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Main Quest</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">8k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Companion Quest</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">7k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Exploration Quest</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">6k</span>
+                    </div>
+                </div>
+
+                <!-- Build Character & Data Bank -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="user-cog" class="w-5 h-5"></i>
+                    Build Character & Data Bank ⚔️
+                </h3>
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Build Character (Echo+Lvl+Signature+Talent)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">35k / char</span>
+                    </div>
+                    <div class="border-t border-teal-200 my-2 pt-2">
+                        <p class="text-sm text-teal-600 font-semibold mb-2">Data Bank Echo Level Up:</p>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-600 text-sm ml-4">Level 1-10</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">1k per level</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-600 text-sm ml-4">Level 10-25</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">2.5k per level</span>
+                    </div>
+                </div>
+
+                <!-- Event -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="sparkles" class="w-5 h-5"></i>
+                    Event 🎉
+                </h3>
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">Event Patch Pintu</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">Event Patch Whiwa</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">30k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">TCG (Sabung Echo)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600 premium">50k</span>
+                    </div>
+                </div>
+
+                <!-- Joki Farming -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="pickaxe" class="w-5 h-5"></i>
+                    Joki Farming ⛏️
+                </h3>
+                
+                <!-- Farm Echo -->
+                <div class="space-y-2 mb-4 bg-teal-50 rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-teal-700 mb-2 flex items-center gap-2">
+                        <i data-lucide="audio-waveform" class="w-4 h-4"></i>
+                        Farm Echo
+                    </h4>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Cost 4 dalam Domain (per 5 absorb)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">2k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Cost 4 Open World (per 5 absorb)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">3k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Cost 3 Farm Sampai Bersih</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">10k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Cost 1 Farm Sampai Bersih</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span>
+                    </div>
+                </div>
+
+                <!-- Farm Material -->
+                <div class="space-y-2 mb-4 bg-teal-50 rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-teal-700 mb-2 flex items-center gap-2">
+                        <i data-lucide="leaf" class="w-4 h-4"></i>
+                        Farm Material Tanaman
+                    </h4>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Ascend Character (60 biji)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">15k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Non-Ascend (per 5 biji)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">1k</span>
+                    </div>
+                </div>
+
+                <!-- Haunting Items -->
+                <div class="space-y-2 mb-6 bg-teal-50 rounded-xl p-4">
+                    <h4 class="text-sm font-bold text-teal-700 mb-2 flex items-center gap-2">
+                        <i data-lucide="box" class="w-4 h-4"></i>
+                        Haunting Items
+                    </h4>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Sonance Casket (3 biji)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">2k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700 text-sm">Windchimes (3 biji)</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">1.5k</span>
+                    </div>
+                </div>
+
+                <!-- Joki Radiant Tide -->
+                <h3 class="text-lg font-bold text-teal-600 mb-3 flex items-center gap-2">
+                    <i data-lucide="waves" class="w-5 h-5"></i>
+                    Joki Radiant Tide 🌊
+                    <span class="text-xs font-normal text-gray-500 bg-gray-100 px-2 py-1 rounded-full">map masih luas</span>
+                </h3>
+                <div class="space-y-2 mb-8 bg-teal-50 rounded-xl p-4">
+                    <div class="price-item">
+                        <span class="text-gray-700">1.000 Radiant Tide</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">20k</span>
+                    </div>
+                    <div class="price-item">
+                        <span class="text-gray-700">1.600 Radiant Tide</span>
+                        <span class="price-badge bg-gradient-to-r from-teal-500 to-cyan-600">30k</span>
+                    </div>
+                </div>
+
+                <!-- Custom Order Note -->
+                <div class="bg-gradient-to-r from-teal-100 to-cyan-100 rounded-xl p-4 mb-6 border-l-4 border-teal-500">
+                    <p class="text-teal-800 text-sm flex items-center gap-2">
+                        <i data-lucide="info" class="w-4 h-4 flex-shrink-0"></i>
+                        <span>Untuk jokian di luar price list boleh langsung chat WA untuk custom order!</span>
+                    </p>
+                </div>
+
+                <!-- Order Button -->
+                <a href="https://wa.me/6281338838631?text=Halo%20min,%20mau%20joki%20WuWa%20dong!%0A%0AJenis:%20...%0ABudget:%20-" target="_blank" class="w-full bg-gradient-to-r from-teal-500 to-cyan-600 text-white py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 hover:shadow-lg hover:scale-[1.02] transition-all">
+                    <i data-lucide="message-circle" class="w-6 h-6"></i>
+                    Order Joki WuWa
+                </a>
+            </div>
+        </div>
+
+        <!-- Note Section -->
+        <div class="max-w-3xl mx-auto mt-8">
+            <div class="bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl p-6 text-white">
+                <h4 class="font-bold text-lg mb-2 flex items-center gap-2">
+                    <i data-lucide="info" class="w-5 h-5"></i>
+                    Catatan Penting
+                </h4>
+                <ul class="space-y-2 text-sm text-white/90">
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 mt-0.5 text-yellow-300"></i>
+                        <span>Harga <span class="font-mono bg-yellow-400 text-black px-1 rounded text-xs"></span> = harga start/minimal (paket basic)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 mt-0.5 text-red-400"></i>
+                        <span>Harga <span class="font-mono bg-red-500 text-white px-1 rounded text-xs"></span> = harga max/premium (full package)</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="check-circle" class="w-4 h-4 mt-0.5 text-green-300"></i>
+                        <span>All price negotiable - chat dulu aja buat custom order!</span>
+                    </li>
+                    <li class="flex items-start gap-2">
+                        <i data-lucide="shield" class="w-4 h-4 mt-0.5 text-blue-300"></i>
+                        <span>100% Aman, no cheat/hack/bot, pure joki manual</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        lucide.createIcons();
+        
+        function showGame(game) {
+            // Update tabs
+            document.querySelectorAll('.category-tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            document.getElementById('tab-' + game).classList.add('active');
+            
+            // Update sections
+            document.querySelectorAll('.game-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            document.getElementById(game + '-section').classList.add('active');
+            
+            // Re-init icons
+            setTimeout(() => lucide.createIcons(), 100);
+        }
+        
+        // Check hash on load
+        if(window.location.hash) {
+            const hash = window.location.hash.replace('#', '');
+            if(hash === 'genshin' || hash === 'wuwa') {
+                showGame(hash);
+            }
+        }
+    </script>
+</body>
+</html>
