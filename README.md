@@ -9,5 +9,3 @@ tags:
 ---
 
 # Mahiru Shiina Personal & Joki Web 🪽
-
-This project has been created with ((https://deepsite.hf.co](https://github.com/anzzzsenpai)) AI Vibe Coding.
