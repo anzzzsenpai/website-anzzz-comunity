@@ -10,4 +10,4 @@ tags:
 
 # Mahiru Shiina Personal & Joki Web 🪽
 
-This project has been created with [DeepSite](https://deepsite.hf.co) AI Vibe Coding.
+This project has been created with [[DeepSite](https://deepsite.hf.co](https://github.com/anzzzsenpai)) AI Vibe Coding.
